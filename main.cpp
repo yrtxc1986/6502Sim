@@ -44,6 +44,11 @@ private:
                   << std::setfill('0')
                   << (int)data;
     };
+    Data readPC(){
+        Data data = bus->read(pc);
+        pc++;
+        return data;
+    }
 
 public:
     Cpu(Bus *bus) : bus(bus)
@@ -57,13 +62,11 @@ public:
     };
     int execute()
     {
-        Data opcode = bus->read(pc);
-        pc++;
+        Data opcode = readPC();
         switch (opcode)
         {
         case 0xA9: // LDA Immediate
-            a = bus->read(pc);
-            pc++;
+            a = readPC();
             break;
         default:
             std::cerr << "Unknown opcode: " << std::hex << (int)opcode << std::endl;
