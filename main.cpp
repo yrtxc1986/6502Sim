@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <bitset>
 
 using Data = unsigned char;
 using Address = unsigned short;
@@ -87,8 +88,7 @@ public:
         std::cout << " SP: ";
         printHex(sp);
         std::cout << " STATUS: " << std::bitset<sizeof(Data) * 8>(+status);
-        std::cout << std::endl; 
-        ;
+        std::cout << std::endl;
     }
 };
 
